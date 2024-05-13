@@ -53,15 +53,6 @@ public class Trabajador implements Initializable {
         });
     }
 
-
-    public void Informacion() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Mensaje");
-        alert.setContentText("Empleado " + nameText.getText() + " introducido en la base de datos");
-        alert.setTitle("HECHO");
-        alert.show();
-    }
-
     public void trabajador() {
         if (nameText.getText().isEmpty() || salaryText.getText().isEmpty() || poschoice.getItems().isEmpty()) {
             error();
@@ -77,6 +68,13 @@ public class Trabajador implements Initializable {
         alert.setHeaderText("Error");
         alert.setContentText("Si no rellena los campos no se puede añadir a la lista de los trabajadores");
         alert.setTitle("IMPOSIBLE AÑADIR TRABAJADOR");
+        alert.show();
+    }
+    public void Informacion() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Mensaje");
+        alert.setContentText("Empleado " + nameText.getText() + " introducido en la base de datos");
+        alert.setTitle("HECHO");
         alert.show();
     }
 
@@ -98,7 +96,7 @@ public class Trabajador implements Initializable {
     }
 
     public void parsearLinea() {
-        File fichero = new File("src/main/resources/com/example/MartinP/trabajadores (1).txt");
+        File fichero = new File("GestorEmpleadosMartinPenalva-master/src/main/resources/com/example/MartinP/trabajadores.txt");
         try {
             Connection miConexion = null;
             miConexion = conectar();
