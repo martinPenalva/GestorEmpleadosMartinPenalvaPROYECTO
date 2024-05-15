@@ -15,7 +15,7 @@ import java.sql.*;
 import java.util.Scanner;
 public class Trabajador implements Initializable {
     public TextField nameText;
-    public ComboBox<String> poschoice;
+    public ComboBox<String> choice;
     public TextField salaryText;
     public Button insertButton;
     @FXML
@@ -42,7 +42,7 @@ public class Trabajador implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        poschoice.setItems(FXCollections.observableArrayList("Scada Manager", "Sales Manager", "Product Owner",
+        choice.setItems(FXCollections.observableArrayList("Scada Manager", "Sales Manager", "Product Owner",
                 "Product Manager", "Analyst ProgrammerAnalyst Programmer", "Junior Programmer"));
         consultText.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<>() {
             @Override
@@ -54,7 +54,9 @@ public class Trabajador implements Initializable {
     }
 
     public void trabajador() {
-        if (nameText.getText().isEmpty() || salaryText.getText().isEmpty() || poschoice.getItems().isEmpty()) {
+        if (nameText.getText().isEmpty() ||
+                salaryText.getText().isEmpty() ||
+                choice.getItems().isEmpty()) {
             error();
         } else {
             if (insertar()) {
@@ -126,7 +128,7 @@ public class Trabajador implements Initializable {
             miConexion = conectar();
             PreparedStatement statment = miConexion.prepareStatement("insert into Empleados (nombre, puesto, salario, fecha) values (?,?,?,now())");
             statment.setString(1, nameText.getText());
-            statment.setString(2, poschoice.getValue());
+            statment.setString(2, choice.getValue());
             try {
                 statment.setInt(3, Integer.parseInt(salaryText.getText()));
             }
@@ -178,10 +180,8 @@ public class Trabajador implements Initializable {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
             {
-                idLabel.setText(resultSet.getString("ID"));
-                nameLabel.setText(resultSet.getString("NOMBRE"));
-                posLabel.setText(resultSet.getString("PUESTO"));
-                dateLabel.setText(resultSet.getString("FECHA"));
+                idLabel.setText(resultSet.getString("ID"));nameLabel.setText(resultSet.getString("NOMBRE"));
+                posLabel.setText(resultSet.getString("PUESTO"));dateLabel.setText(resultSet.getString("FECHA"));
                 salaryLabel.setText(resultSet.getString("SALARIO"));
             }
         } catch (SQLException e) {

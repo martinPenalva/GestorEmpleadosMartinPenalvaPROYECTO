@@ -14,7 +14,7 @@
                         <Label layoutX="14.0" layoutY="5.0" prefHeight="19.0" prefWidth="54.0" text="Nombre" />
                         <TextField fx:id="nameText" layoutX="14.0" layoutY="24.0" />
                         <Label layoutX="14.0" layoutY="56.0" prefHeight="17.0" prefWidth="41.0" text="Puesto" />
-                        <ComboBox fx:id="poschoice" layoutX="14.0" layoutY="73.0" prefWidth="150.0" />
+                        <ComboBox fx:id="choice" layoutX="14.0" layoutY="73.0" prefWidth="150.0" />
                         <Label layoutX="14.0" layoutY="115.0" text="Salario" />
                         <TextField fx:id="salaryText" layoutX="14.0" layoutY="132.0" />
                         <Button fx:id="insertButton" layoutX="15.0" layoutY="174.0" mnemonicParsing="false" onAction="#trabajador" text="Insertar" />
