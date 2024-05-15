@@ -120,22 +120,6 @@ public class Trabajador implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
-    public void refresh() {
-        try
-        {
-            Connection connection = conectar();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select nombre from Empleados");
-            consultText.getItems().clear();
-            while (resultSet.next())
-            {
-                consultText.getItems().add(resultSet.getString("NOMBRE"));
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al refrescar");
-        }
-    }
     public boolean insertar() {
         Connection miConexion = null;
         try {
@@ -166,6 +150,22 @@ public class Trabajador implements Initializable {
             }
         }
     }
+    public void refresh() {
+        try
+        {
+            Connection connection = conectar();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select nombre from Empleados");
+            consultText.getItems().clear();
+            while (resultSet.next())
+            {
+                consultText.getItems().add(resultSet.getString("NOMBRE"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al refrescar");
+        }
+    }
+
     public void eliminar() {
         eliminarDatos(consultText.getSelectionModel().getSelectedItem());
     }
