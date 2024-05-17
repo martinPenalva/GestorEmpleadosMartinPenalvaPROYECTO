@@ -40,7 +40,19 @@ public class Trabajador implements Initializable {
     public Button loadDataBTN;
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        choice.setItems(FXCollections.observableArrayList("Scada Manager", "Sales Manager", "Product Owner",
+                "Product Manager", "Analyst ProgrammerAnalyst Programmer", "Junior Programmer"));
+        consultText.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                String consul = consultText.getSelectionModel().getSelectedItem();
+                Losdatos(consul);
+            }
 
+        });
+    }
 
     public void trabajador() {
         if (nameText.getText().isEmpty() ||
